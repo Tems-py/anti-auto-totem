@@ -1,0 +1,4 @@
+name: ttotem
+version: '${version}'
+main: org.tems.ttotem.Tetotem
+api-version: '1.20'
