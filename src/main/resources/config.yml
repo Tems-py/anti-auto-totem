@@ -2,6 +2,7 @@
 maximumAllowedTicksToChangeTotem: 10
 # If server's TPS are lower than this player won't get punished but will show logs to console and admins
 minimumTpsForFlagsCount: 17.5
+
 punishAfterFlags: 3
 # Commands that will be executed after reaching desired number of flags. Use %player% for player's name
 punishments:
