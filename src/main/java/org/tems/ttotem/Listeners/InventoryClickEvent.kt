@@ -17,6 +17,7 @@ class InventoryClickEvent(private val plugin: Tetotem) : Listener {
 
     @EventHandler
     fun inventoryClickEvent(event: InventoryClickEvent) {
+        println(plugin.i)
         val item = event.cursor
         val player = event.whoClicked
         val ticks = plugin.config.getInt("maximumAllowedTicksToChangeTotem")
@@ -24,7 +25,7 @@ class InventoryClickEvent(private val plugin: Tetotem) : Listener {
         if (plugin.lastTotem[player.uniqueId] == null) return
 
         val lastUse = plugin.lastTotem[player.uniqueId] ?: return
-        if (plugin.server.tickTimes.last().minus(lastUse) > ticks) return
+        if (plugin.i.minus(lastUse) > ticks) return
 
         val mm = MiniMessage.miniMessage();
         if (plugin.config.getString("adminMessage") == null) {
@@ -55,11 +56,14 @@ class InventoryClickEvent(private val plugin: Tetotem) : Listener {
         val commands = plugin.config.getList("punishments") ?: return
         if (flags[player.uniqueId]!! < plugin.config.getInt("punishAfterFlags")) return
 
+        plugin.lastTotem = HashMap<UUID, Long>()
+        flags = HashMap<UUID, Int>()
         for (command in commands) {
             plugin.server.dispatchCommand(
                 plugin.server.consoleSender,
                 command.toString().replace("%player%", player.name)
             )
+            plugin.i = 0
         }
     }
 }

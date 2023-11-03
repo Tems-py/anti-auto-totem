@@ -12,7 +12,7 @@ class EntityResurrectListener(private var plugin: Tetotem) : Listener {
     fun entityResurrectEvent(event: EntityResurrectEvent) {
         if (!event.isCancelled) {
             if (event.entity.type == EntityType.PLAYER){
-                plugin.lastTotem[event.entity.uniqueId] = plugin.server.tickTimes.last()
+                plugin.lastTotem[event.entity.uniqueId] = plugin.i
             }
         }
     }
