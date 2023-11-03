@@ -21,7 +21,6 @@ class InventoryClickEvent(private val plugin: Tetotem) : Listener {
         if (item.type != Material.TOTEM_OF_UNDYING || event.slot != 40) return
         if (plugin.lastTotem[player.uniqueId] != null) return
 
-
         val lastUse = plugin.lastTotem[player.uniqueId]
         if (plugin.server.tickTimes.last().minus(lastUse!!) > ticks) return
 
