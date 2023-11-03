@@ -3,8 +3,10 @@ package org.tems.ttotem.Listeners
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.Material
+import org.bukkit.entity.EntityType
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
+import org.bukkit.event.entity.EntityResurrectEvent
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.tems.ttotem.Tetotem
 import java.util.*
@@ -19,10 +21,10 @@ class InventoryClickEvent(private val plugin: Tetotem) : Listener {
         val player = event.whoClicked
         val ticks = plugin.config.getInt("maximumAllowedTicksToChangeTotem")
         if (item.type != Material.TOTEM_OF_UNDYING || event.slot != 40) return
-        if (plugin.lastTotem[player.uniqueId] != null) return
+        if (plugin.lastTotem[player.uniqueId] == null) return
 
-        val lastUse = plugin.lastTotem[player.uniqueId]
-        if (plugin.server.tickTimes.last().minus(lastUse!!) > ticks) return
+        val lastUse = plugin.lastTotem[player.uniqueId] ?: return
+        if (plugin.server.tickTimes.last().minus(lastUse) > ticks) return
 
         val mm = MiniMessage.miniMessage();
         if (plugin.config.getString("adminMessage") == null) {

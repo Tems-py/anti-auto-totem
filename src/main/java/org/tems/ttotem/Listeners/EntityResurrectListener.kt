@@ -8,7 +8,6 @@ import org.tems.ttotem.Tetotem
 
 
 class EntityResurrectListener(private var plugin: Tetotem) : Listener {
-
     @EventHandler
     fun entityResurrectEvent(event: EntityResurrectEvent) {
         if (!event.isCancelled) {
