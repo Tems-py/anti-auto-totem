@@ -1,0 +1,7 @@
+maximumAllowedTicksToChangeTotem: 10
+punishAfterFlags: 3
+punishments:
+#  - "kill {player}"
+  - "kick {player}"
+
+adminMessage: "Gracz %player% uzył totemu w mniej niż %ticks% ticków. !SUS!"
