@@ -17,7 +17,6 @@ class InventoryClickEvent(private val plugin: Tetotem) : Listener {
 
     @EventHandler
     fun inventoryClickEvent(event: InventoryClickEvent) {
-        println(plugin.i)
         val item = event.cursor
         val player = event.whoClicked
         val ticks = plugin.config.getInt("maximumAllowedTicksToChangeTotem")
@@ -35,7 +34,9 @@ class InventoryClickEvent(private val plugin: Tetotem) : Listener {
         val message = plugin.config.getString("adminMessage").toString().replace("%player%", player.name)
             .replace("%ticks%", ticks.toString())
         val parsed: Component = mm.deserialize(message)
-        plugin.logger.info(message)
+        val consoleMessage = plugin.config.getString("consoleMessage").toString().replace("%player%", player.name)
+            .replace("%ticks%", ticks.toString())
+        plugin.logger.info(consoleMessage)
 
         for (lp in plugin.server.onlinePlayers) {
             if (lp.hasPermission("ttotem.admin")) {
