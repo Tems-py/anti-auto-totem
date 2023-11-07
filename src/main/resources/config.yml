@@ -1,7 +1,13 @@
+# ----------
+#  Auto Totem
+# ----------
 # If player moves totem from inventory faster than this number he will be flagged as cheater
-maximumAllowedTicksToChangeTotem: 10
+maximumAllowedTicksToChangeTotemAfterPop: 10
 # If server's TPS are lower than this player won't get punished but will show logs to console and admins
 minimumTpsForFlagsCount: 17.5
+
+# Prevent people using "binds" for auto equipping totems
+detectUnknownTypeActionsWhenSwitchingToOffhand: true
 
 punishAfterFlags: 3
 # Commands that will be executed after reaching desired number of flags. Use %player% for player's name
