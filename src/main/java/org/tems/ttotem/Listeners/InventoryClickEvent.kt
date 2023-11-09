@@ -22,7 +22,7 @@ class InventoryClickEvent(private val plugin: Tetotem) : Listener {
     @EventHandler
     fun inventoryClickEvent(event: InventoryClickEvent) {
         if (autoTotemChecks(event)) return
-        if (plugin.config.getBoolean("detectFastTotemEquipInInventory")){
+        if (plugin.config.getBoolean("detectUnknownTypeActionsWhenSwitchingToOffhand")){
             bindTotemChecks(event)
         }
         val player = event.whoClicked
