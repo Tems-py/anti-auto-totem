@@ -55,22 +55,21 @@ class InventoryClickEvent(private val plugin: Tetotem) : Listener {
     }
 
     private fun logFlag(player: HumanEntity, ticks: String){
-        if (plugin.config.getString("adminMessage") == null) {
-            println("\"adminMessage\" is missing in config")
-            return
-        }
-        val mm = MiniMessage.miniMessage();
-        val message = plugin.config.getString("adminMessage").toString().replace("%player%", player.name)
-            .replace("%ticks%", ticks)
-        val parsed: Component = mm.deserialize(message)
-        val consoleMessage = plugin.config.getString("consoleMessage").toString().replace("%player%", player.name)
-            .replace("%ticks%", ticks)
-        plugin.logger.info(consoleMessage)
-
-        for (lp in plugin.server.onlinePlayers) {
-            if (lp.hasPermission("ttotem.admin")) {
-                lp.sendMessage(parsed)
+        if (plugin.config.getString("adminMessage") != null) {
+            val mm = MiniMessage.miniMessage();
+            val message = plugin.config.getString("adminMessage").toString().replace("%player%", player.name)
+                .replace("%ticks%", ticks)
+            val parsed: Component = mm.deserialize(message)
+            for (lp in plugin.server.onlinePlayers) {
+                if (lp.hasPermission("ttotem.admin")) {
+                    lp.sendMessage(parsed)
+                }
             }
+        }
+        if (plugin.config.getString("consoleMessage") != null) {
+            val consoleMessage = plugin.config.getString("consoleMessage").toString().replace("%player%", player.name)
+                .replace("%ticks%", ticks)
+            plugin.logger.info(consoleMessage)
         }
     }
 
