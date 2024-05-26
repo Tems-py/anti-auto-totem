@@ -20,4 +20,4 @@ punishments:
 # Message shown to administrators when player is flagged as cheater, you can use  Minimessage format https://docs.advntr.dev/minimessage/format.html
 adminMessage: "<rainbow>Player %player% replaced his totem in under %ticks% ticks ඞඞඞ</rainbow>"
 # Message logged to console, you can's use minimessage there
-consoleMessage: "Player %player% replaced his totem in under %ticks% ticks"
+consoleMessage: "Player %player% replaced his totem in under %ticks% with ping %ping%ms (%flagged%/%popped%)"

@@ -4,11 +4,13 @@ import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 import org.tems.ttotem.Listeners.EntityResurrectListener
 import org.tems.ttotem.Listeners.InventoryClickEvent
+import org.tems.ttotem.Listeners.SwapHandListener
+import org.tems.ttotem.Punishments.FlagsPunish
 import java.util.*
 
 
 class Tetotem : JavaPlugin() {
-    var lastTotem: HashMap<UUID, Long> = HashMap<UUID, Long>()
+    var punish = FlagsPunish(this)
     var i: Long = 0
     override fun onEnable() {
         logger.info("Staring plugin")
@@ -20,6 +22,7 @@ class Tetotem : JavaPlugin() {
     private fun registerListeners() {
         server.pluginManager.registerEvents(EntityResurrectListener(this), this)
         server.pluginManager.registerEvents(InventoryClickEvent(this), this)
+        server.pluginManager.registerEvents(SwapHandListener(this), this)
         logger.info("Registered listeners")
     }
 
@@ -28,7 +31,7 @@ class Tetotem : JavaPlugin() {
             this,
             Runnable {
                 i += 1;
-                if (i > 372036854775807){
+                if (i > 20 * 60 * 60){
                     i = 0
                 }
             },
@@ -40,4 +43,6 @@ class Tetotem : JavaPlugin() {
     override fun onDisable() {
         logger.info("Stopping plugin")
     }
+
+
 }
