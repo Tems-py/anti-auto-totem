@@ -11,8 +11,8 @@ import kotlin.collections.HashMap
 
 class FlagsPunish(private var plugin: Tetotem) {
     var lastTotem = HashMap<UUID, Long>()
-    private var totemsPopped = HashMap<UUID, Int>()
-    private var totemsFlagged = HashMap<UUID, Int>()
+    var totemsPopped = HashMap<UUID, Int>()
+    var totemsFlagged = HashMap<UUID, Int>()
     private var flags = HashMap<UUID, Int>()
 
     fun addTotem(player: Player) {

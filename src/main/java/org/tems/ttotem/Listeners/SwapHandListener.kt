@@ -18,7 +18,19 @@ class SwapHandListener(private val plugin: Tetotem) : Listener {
         val lastUse = plugin.punish.lastTotem[player.uniqueId] ?: return
         if (plugin.i.minus(lastUse) > ticks) return
 
-        plugin.punish.logFlag(player, "$ticks A CHECK")
-        plugin.punish.punishAndRegisterFlag(player)
+        val totemsFlagged = plugin.punish.totemsFlagged[player.uniqueId]
+        val totemsPopped = plugin.punish.totemsPopped[player.uniqueId]
+
+        if (totemsFlagged == null || totemsPopped == null) {
+            plugin.punish.logFlag(player, "$ticks A CHECK")
+            plugin.punish.punishAndRegisterFlag(player)
+        } else {
+            if (totemsFlagged > totemsPopped / 4) {
+                plugin.punish.logFlag(player, "$ticks A CHECK")
+                plugin.punish.punishAndRegisterFlag(player)
+            } else {
+                plugin.punish.logFlag(player, "$ticks A CHECK (NO PUNISH)")
+            }
+        }
     }
 }
