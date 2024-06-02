@@ -25,7 +25,7 @@ class SwapHandListener(private val plugin: Tetotem) : Listener {
             plugin.punish.logFlag(player, "$ticks A CHECK")
             plugin.punish.punishAndRegisterFlag(player)
         } else {
-            if (totemsFlagged > totemsPopped / 4) {
+            if (totemsFlagged > totemsPopped / 3) {
                 plugin.punish.logFlag(player, "$ticks A CHECK")
                 plugin.punish.punishAndRegisterFlag(player)
             } else {
