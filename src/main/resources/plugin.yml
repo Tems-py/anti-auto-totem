@@ -1,4 +1,25 @@
 name: ttotem
 version: '${version}'
 main: org.tems.ttotem.Tetotem
-api-version: '1.19'
+api-version: '1.20'
+
+commands:
+  ac:
+    description: AntiCheat admin command
+    permission: anticheat.admin
+    usage: /ac reload
+    aliases: [anticheat]
+
+permissions:
+  anticheat.admin:
+    description: Access to anticheat admin commands
+    default: op
+  anticheat.alerts:
+    description: Receive anticheat violation alerts
+    default: op
+  anticheat.bypass:
+    description: Bypass all anticheat checks
+    default: false
+  ttotem.admin:
+    description: Receive auto-totem alerts
+    default: op

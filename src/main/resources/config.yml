@@ -21,3 +21,37 @@ punishments:
 adminMessage: "<rainbow>Player %player% replaced his totem in under %ticks% ticks ඞඞඞ</rainbow>"
 # Message logged to console, you can's use minimessage there
 consoleMessage: "Player %player% replaced his totem in under %ticks% with ping %ping%ms (%flagged%/%popped%)"
+
+# ==========================================
+#  AntiCheat System (Packet-based checks)
+# ==========================================
+anticheat:
+  debug: false
+  prefix: "&8[&cAC&8] "
+  alert-permission: "anticheat.alerts"
+  thread-pool-size: 4
+  latency-compensation: true
+  max-ping-compensation-ticks: 6
+
+setback:
+  enabled: true
+  save-interval-ticks: 40
+
+checks:
+  movement:
+    speed:       { enabled: true, tolerance: 0.05 }
+    flight:      { enabled: true }
+    timer:       { enabled: true, max-cps: 22 }
+    nofall:      { enabled: true }
+    step:        { enabled: true }
+  combat:
+    reach:       { enabled: true, max-reach: 3.2 }
+    killaura:    { enabled: true }
+    autoclicker: { enabled: true, max-cps: 20, min-stddev: 5 }
+    aimbot:      { enabled: true, max-delta-per-tick: 180 }
+    velocity:    { enabled: true }
+
+exemptions:
+  gamemodes: [CREATIVE, SPECTATOR]
+  permissions: ["anticheat.bypass"]
+  worlds: []
